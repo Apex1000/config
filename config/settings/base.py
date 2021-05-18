@@ -21,6 +21,10 @@ INSTALLED_APPS = [
     
     #### Applications
     'authentication',
+    'core',
+    'panel_user',
+    'leads',
+    'logs',
 ]
 
 MIDDLEWARE = [
