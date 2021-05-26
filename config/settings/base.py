@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'panel_user',
     'leads',
     'logs',
+    'store',
+    'mobile_application',
 ]
 
 MIDDLEWARE = [
