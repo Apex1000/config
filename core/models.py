@@ -252,6 +252,7 @@ class Cities(models.Model):
         null=True
     )
     display_name = models.CharField(max_length=500)
+    connected_to = models.ManyToManyField("self", related_name="panelusers", blank=True)
 
     def __str__(self):
         return "%s" % (self.display_name)

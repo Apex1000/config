@@ -54,6 +54,6 @@ class DistanceProximityAPIView(ListAPIView):
         geolocator = Nominatim(user_agent="mobile_app")
         location = geolocator.reverse(logitude+","+latitude)
         address = location.raw['address']['city']
-        store_objs = store_models.Store.objects.filter(city__name = address)
+        store_objs = store_models.Store.objects.filter()
         return store_objs
     
