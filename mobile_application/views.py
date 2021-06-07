@@ -49,11 +49,13 @@ now = date.today()
 class DistanceProximityAPIView(ListAPIView):
     serializer_class = mobile_application_serializers.DistanceProximitySerializer
     def get_queryset(self):
-        logitude = self.request.query_params.get("logitude")
-        latitude = self.request.query_params.get("latitude")
-        geolocator = Nominatim(user_agent="mobile_app")
-        location = geolocator.reverse(logitude+","+latitude)
-        address = location.raw['address']['city']
-        store_objs = store_models.Store.objects.filter()
-        return store_objs
-    
+        # logitude = self.request.query_params.get("logitude")
+        # latitude = self.request.query_params.get("latitude")
+        # geolocator = Nominatim(user_agent="mobile_app")
+        # location = geolocator.reverse(logitude+","+latitude)
+        # address = location.raw['address']['city']
+        city = self.request.query_params.get("city")
+        if city:
+            store_objs = store_models.Store.objects.filter(city_id = city)
+            return store_objs
+        return None

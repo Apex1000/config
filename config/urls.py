@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("auth/", include("authentication.urls")),
     path("mobile/", include("mobile_application.urls")),
+    path("upload/", include("uploader.urls")),
     
     path("", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path(
