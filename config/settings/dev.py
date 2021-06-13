@@ -1,13 +1,15 @@
 '''Use this for development'''
 
 from .base import *
+import os
 
 ALLOWED_HOSTS += ['127.0.0.1']
 DEBUG = True
 
 WSGI_APPLICATION = 'config.wsgi.dev.application'
-STATIC_URL = "/static/"
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
