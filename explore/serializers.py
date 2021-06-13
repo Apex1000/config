@@ -9,6 +9,18 @@ import pytz
 tz = pytz.timezone('Asia/Kolkata')
 
 class StoreSerializer(serializers.ModelSerializer):
+    city = serializers.SerializerMethodField()
+    
     class Meta:
         model = Store
-        fields = '__all__'
+        fields = (
+            "id",
+            "name",
+            "manager",
+            "phone_number",
+            "fulladdr",
+            "district",
+            "city",
+        )
+    def get_city(self,obj):
+        return obj.city.name if obj.city else None
