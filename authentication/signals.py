@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from django.dispatch import receiver
-from panel_user.models import Profile
+from profiles.models import Profile
 from django.conf import settings
 
 User = get_user_model()
@@ -13,5 +13,5 @@ def create_related_profile(sender, instance, created, *args, **kwargs):
     # the first time the `User` instance is created. If the save that caused
     # this signal to be run was an update action, we know the user already
     # has a profile.
-    if instance and created:
-        instance.profile = Profile.objects.create(user=instance)
+    if created:
+        Profile.objects.create(user=instance)

@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'logs',
     'store',
     'mobile_application',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ AUTH_USER_MODEL = "authentication.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-    # "DEFAULT_AUTHENTICATION_CLASSES": ("authentication.backends.JWTAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ( "rest_framework_simplejwt.authentication.JWTAuthentication",),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "EXCEPTION_HANDLER": "core.exceptions.core_exception_handler",
     "NON_FIELD_ERRORS_KEY": "error",
@@ -99,7 +100,7 @@ REST_FRAMEWORK = {
 
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
-        "api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}
+        "Token": {"type": "apiKey", "in": "header", "name": "Authorization"}
     },
 }
 
@@ -292,3 +293,5 @@ SIMPLE_JWT = {
 # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
+MEDIA_URL = '/media/'
