@@ -3,6 +3,7 @@ from django.db.models import manager
 from core import models as core_models
 
 class Store(core_models.TimestampedModel):
+    image = models.ImageField(upload_to = core_models.UPLOAD_TO,blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     query = models.CharField(max_length=255, blank=True, null=True)
     manager = models.CharField(max_length=255, blank=True, null=True)
