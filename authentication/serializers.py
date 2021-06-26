@@ -22,14 +22,14 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["email", "username", "password","phone"]
+        fields = [ "password", "phone"]
 
     def validate(self, attrs):
-        email = attrs.get("email", "")
-        username = attrs.get("username", "")
+        # email = attrs.get("email", "")
+        # username = attrs.get("username", "")
 
-        if not username.isalnum():
-            raise serializers.ValidationError(self.default_error_messages)
+        # if not username.isalnum():
+        #     raise serializers.ValidationError(self.default_error_messages)
         return attrs
 
     def create(self, validated_data):
