@@ -23,7 +23,8 @@ urlpatterns = [
     path("profile/", include("profiles.api_urls")),
     path("upload/", include("uploader.urls")),
     path("explore/", include("explore.urls")),
-    
+    ### Panel User ####
+    path("users/", include("panel_user.urls")),
     path("", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path(
         "api/api.json/",

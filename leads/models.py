@@ -129,7 +129,7 @@ class Lead(core_models.TimestampedModel):
         default=None,
     )
     panel_user = models.ForeignKey(
-        "panel_user.Profile",
+        "panel_user.PanelUserProfile",
         related_name="paneluser",
         on_delete=models.CASCADE,
         blank=True,

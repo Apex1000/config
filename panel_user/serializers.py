@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from panel_user.models import Profile
+from panel_user.models import PanelUserProfile
 
 class ProfileFilterSerializer(serializers.ModelSerializer):
     username = serializers.SerializerMethodField()
     
     class Meta:
-        model = Profile
+        model = PanelUserProfile
         fields = (
             'id',
             'username',
@@ -24,7 +24,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.SerializerMethodField()
     
     class Meta:
-        model = Profile
+        model = PanelUserProfile
         fields = (
             'id',
             'username',

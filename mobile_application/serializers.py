@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from panel_user.models import Profile
+from panel_user.models import PanelUserProfile
 from store import models as store_models
 from haversine import haversine, Unit
 

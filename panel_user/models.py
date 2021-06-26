@@ -13,7 +13,7 @@ class Provider(core_models.TimestampedModel):
     def __str__(self):
         return self.name
 
-class Profile(core_models.TimestampedModel):
+class PanelUserProfile(core_models.TimestampedModel):
     user = models.OneToOneField("authentication.User",on_delete=models.CASCADE)
     user_type = models.ForeignKey(UserRoles, related_name='profile_userroles', on_delete=models.CASCADE,blank=True, null=True)
     assigned = models.ManyToManyField("self", related_name="panelusers", blank=True)

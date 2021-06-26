@@ -17,7 +17,7 @@ from .serializers import (
     ProfileSerializer,
 )
 # from profiles.exceptions import ProfileDoesNotExist
-from panel_user.models import Profile
+from panel_user.models import PanelUserProfile
 # from profiles.renderers import ProfileJSONRenderer
 
 
@@ -26,5 +26,5 @@ class ProfileAPIView(RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):
-        obj = get_object_or_404(Profile, user=self.request.user)
+        obj = get_object_or_404(PanelUserProfile, user=self.request.user)
         return obj
