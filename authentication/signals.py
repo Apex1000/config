@@ -16,12 +16,13 @@ def create_related_profile(sender, instance, created, *args, **kwargs):
     # has a profile.
     if created:
         Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def create_related_profile(sender, instance, created, *args, **kwargs):
-    # Notice that we're checking for `created` here. We only want to do this
-    # the first time the `User` instance is created. If the save that caused
-    # this signal to be run was an update action, we know the user already
-    # has a profile.
-    if created:
         PanelUserProfile.objects.create(user=instance)
+
+# @receiver(post_save, sender=User)
+# def create_related_profile(sender, instance, created, *args, **kwargs):
+#     # Notice that we're checking for `created` here. We only want to do this
+#     # the first time the `User` instance is created. If the save that caused
+#     # this signal to be run was an update action, we know the user already
+#     # has a profile.
+#     if created:
+#         PanelUserProfile.objects.create(user=instance)
