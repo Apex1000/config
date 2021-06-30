@@ -50,12 +50,31 @@ class ProfileRetrieveAPIView(RetrieveUpdateAPIView):
 
     def patch(self, request, *args, **kwargs):
         username = request.user
+        d = {}
         data = request.data
+        print(username.id)
+        if data.get("first_name"):
+            d["first_name"] = data.get("first_name")
+        if data.get("last_name"):
+            d["last_name"] = data.get("last_name")
+        if data.get("age"):
+            d["age"] = data.get("age")
+        if data.get("address"):
+            d["address"] = data.get("address")
+        if data.get("city"):
+            d["city"] = data.get("city")
+        if data.get("state"):
+            d["state"] = data.get("state")
+        if data.get("pin_code"):
+            d["pin_code"] = data.get("pin_code")
+        if data.get("image"):
+            d["image"] = data.get("image")
+
         profile = Profile.objects.select_related("user").get(
                 user__phone=username
             )
-        data["user"] = username.id
-        serializer = self.update_serializer_class(profile,data=data)
+        d["user"] = username.id
+        serializer = self.update_serializer_class(profile,data=d)
         
         if serializer.is_valid(raise_exception=True):
             serializer.save()
