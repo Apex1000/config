@@ -4,7 +4,7 @@ from .base import *
 import os
 
 ALLOWED_HOSTS += ['127.0.0.1']
-DEBUG = False
+DEBUG = True
 
 WSGI_APPLICATION = 'config.wsgi.dev.application'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))

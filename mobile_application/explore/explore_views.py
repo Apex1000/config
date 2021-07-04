@@ -21,6 +21,7 @@ from rest_framework.generics import (
 )
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from url_filter.integrations.drf import DjangoFilterBackend 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -39,6 +40,15 @@ now = date.today()
 class ExploreTrending(ListAPIView):
     serializer_class = StoreSerializer
     pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['city', 'id']
     def get_queryset(self):
-        return store_models.Store.objects.filter(city__name__in = ["Prayagraj"])
-    
+        return store_models.Store.objects.filter()
+
+
+class UserViewSet(ListAPIView):
+    queryset = store_models.Store.objects.all()
+    pagination_class = CustomPagination
+    serializer_class = StoreSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['city', 'id']
