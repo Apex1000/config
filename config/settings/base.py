@@ -19,15 +19,18 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_yasg",
     
-    #### Applications
+    #### Applications ####
     'authentication',
     'core',
     'panel_user',
     'leads',
     'logs',
     'store',
-    'mobile_application',
     'profiles',
+    'mandis',
+    #### Mobile App ####
+    'mobile_application',
+
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,4 @@
+from core.paginations import CustomPagination
 import io
 import json
 import random
@@ -32,12 +33,12 @@ from panel_user import models as panel_models
 from panel_user import serializers as panel_serializers
 from core import models as core_models
 from store import models as store_models
-from explore import serializers as explore_serializers
+from mobile_application.explore.explore_serializers import *
 now = date.today()
 
 class ExploreTrending(ListAPIView):
-    serializer_class = explore_serializers.StoreSerializer
-    
+    serializer_class = StoreSerializer
+    pagination_class = CustomPagination
     def get_queryset(self):
         return store_models.Store.objects.filter(city__name__in = ["Prayagraj"])
     
