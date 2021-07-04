@@ -32,12 +32,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         )
     
     def get_image_url(self, instance):
-        try:
-            url = instance.image.url
-        except:
-            url = ""
-        print(settings.MEDIA_URL)
-        return '%s%s' % (settings.MEDIA_URL, instance.image)
-    
+        # return '%s%s' % (settings.MEDIA_URL, instance.image)
+        return "https://img.icons8.com/emoji/144/000000/man-farmer.png"
+        
     def get_phone(self, instance):
         return instance.user.phone

@@ -16,7 +16,8 @@ def create_related_profile(sender, instance, created, *args, **kwargs):
     # has a profile.
     if created:
         Profile.objects.create(user=instance)
-        PanelUserProfile.objects.create(user=instance)
+        if instance.userrole:
+            PanelUserProfile.objects.create(user=instance)
 
 # @receiver(post_save, sender=User)
 # def create_related_profile(sender, instance, created, *args, **kwargs):

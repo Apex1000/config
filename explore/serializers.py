@@ -9,6 +9,7 @@ import pytz
 tz = pytz.timezone('Asia/Kolkata')
 
 class StoreSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField()
     
     class Meta:
@@ -21,6 +22,11 @@ class StoreSerializer(serializers.ModelSerializer):
             "fulladdr",
             "district",
             "city",
+            "image",
         )
+    
     def get_city(self,obj):
         return obj.city.name if obj.city else None
+    
+    def get_image(self,obj):
+        return "https://img.icons8.com/cotton/250/000000/warehouse.png"

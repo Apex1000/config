@@ -39,5 +39,5 @@ class ExploreTrending(ListAPIView):
     serializer_class = explore_serializers.StoreSerializer
     
     def get_queryset(self):
-        return store_models.Store.objects.filter(city__name__in = ["PRAYAGRAJ"])[:10]
+        return store_models.Store.objects.filter(city__name__in = ["Prayagraj"])
     
