@@ -1,5 +1,7 @@
 # from django_countries.serializer_fields import CountryField
-from store.models import Store
+from django.db.models import fields
+from mandis.models import Mandi
+from store.models import Store, StoreDescription
 from rest_framework import serializers
 from core import models as core_models
 from store import *
@@ -40,3 +42,25 @@ class StoreSerializer(serializers.ModelSerializer):
     
     def get_image(self,obj):
         return store_image()
+
+class StoreDescriptionSerializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = StoreDescription
+        fields = (
+            "id",
+            "product",
+            "title",
+            "desciption",
+        )
+    
+    def get_product(self,obj):
+        return obj.product.name
+
+class MandiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mandi
+        fields = (
+            "__all__"
+        )

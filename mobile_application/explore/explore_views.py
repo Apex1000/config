@@ -34,6 +34,7 @@ from panel_user import models as panel_models
 from panel_user import serializers as panel_serializers
 from core import models as core_models
 from store import models as store_models
+from mandis.models import Mandi
 from mobile_application.explore.explore_serializers import *
 now = date.today()
 
@@ -43,14 +44,35 @@ class ExploreTrending(ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['city', 'id']
     def get_queryset(self):
-        return store_models.Store.objects.filter()
+        return store_models.Store.objects.filter().order_by("?")
 
 class StoreDescriptionAPIView(RetrieveAPIView):
+    serializer_class = StoreDescriptionSerializer
     def get_object(self):
         id = self.request.query_params.get("id")
         if id:
             try:
                 item = get_object_or_404(store_models.StoreDescription, id = id)
+                return item
+            except ObjectDoesNotExist:
+                raise Http404("Not Found")
+        raise Http404("Not Found")
+
+class MandiAPIView(ListAPIView):
+    serializer_class = MandiSerializer
+    pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['city', 'id','product']
+    def get_queryset(self):
+        return Mandi.objects.filter().order_by("?")
+
+class MandiDescriptionAPIView(RetrieveAPIView):
+    serializer_class = MandiSerializer
+    def get_object(self):
+        id = self.request.query_params.get("id")
+        if id:
+            try:
+                item = get_object_or_404(Mandi, id = id)
                 return item
             except ObjectDoesNotExist:
                 raise Http404("Not Found")
