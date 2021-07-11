@@ -45,10 +45,13 @@ class ExploreTrending(ListAPIView):
     def get_queryset(self):
         return store_models.Store.objects.filter()
 
-
-# class UserViewSet(ListAPIView):
-#     queryset = store_models.Store.objects.all()
-#     pagination_class = CustomPagination
-#     serializer_class = StoreSerializer
-#     filter_backends = [DjangoFilterBackend]
-#     filter_fields = ['city', 'id']
+class StoreDescriptionAPIView(RetrieveAPIView):
+    def get_object(self):
+        id = self.request.query_params.get("id")
+        if id:
+            try:
+                item = get_object_or_404(store_models.StoreDescription, id = id)
+                return item
+            except ObjectDoesNotExist:
+                raise Http404("Not Found")
+        raise Http404("Not Found")
