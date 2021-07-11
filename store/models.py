@@ -23,3 +23,18 @@ class Store(core_models.TimestampedModel):
     
     def __str__(self):
         return self.name
+        
+class StoreDescription(core_models.TimestampedModel):
+    product = models.ForeignKey(
+        Store,
+        related_name="store",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    title = models.CharField(max_length=255,blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+
+    def __str__(self):
+        return self.product.name

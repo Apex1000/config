@@ -46,9 +46,9 @@ class ExploreTrending(ListAPIView):
         return store_models.Store.objects.filter()
 
 
-class UserViewSet(ListAPIView):
-    queryset = store_models.Store.objects.all()
-    pagination_class = CustomPagination
-    serializer_class = StoreSerializer
-    filter_backends = [DjangoFilterBackend]
-    filter_fields = ['city', 'id']
+# class UserViewSet(ListAPIView):
+#     queryset = store_models.Store.objects.all()
+#     pagination_class = CustomPagination
+#     serializer_class = StoreSerializer
+#     filter_backends = [DjangoFilterBackend]
+#     filter_fields = ['city', 'id']

@@ -1,6 +1,6 @@
 from leads.models import Category
 from django.db import models
-from core.models import TimestampedModel,Cities
+from core.models import TimestampedModel,Cities,UPLOAD_TO
 
 
 class Product(TimestampedModel):
@@ -19,7 +19,8 @@ class Product(TimestampedModel):
 
 class Mandi(TimestampedModel):
     mandi_name = models.CharField(max_length=255,blank=True, null=True)
-    price = models.CharField(max_length=255,blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(upload_to = UPLOAD_TO,blank=True, null=True)
     product = models.ForeignKey(
         Product,
         related_name="product",
@@ -34,5 +35,6 @@ class Mandi(TimestampedModel):
         blank=True,
         null=True
     )
+
     def __str__(self):
         return "{}".format(self.mandi_name)
